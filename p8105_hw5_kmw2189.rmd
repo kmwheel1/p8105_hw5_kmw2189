@@ -55,24 +55,35 @@ iris_with_missing %>%
 ```
 
 ```{r}
-
 ## write a function that takes a vector as an argument. 
-
-replace_iris = function(column_name) {
+replace_iris = function(col_name){
   
-  ##replaces missing values using the rules defined above;
-  if(is.numeric(column_name))
+
+  if(is.numeric(col_name))
     {
-    new_val = replace_na(column_name, mean(column_name, na.rm = TRUE))
+    new_value = replace_na(col_name, mean(col_name, na.rm = TRUE))
   } 
   
-  else if(is.character(column_name))
-  {
-    new_val = replace_na(column_name, "virginica")
+  else if(is.character(col_name))
+    {
+    new_value = replace_na(col_name, "virginica")
   }
   
+  new_value
 }
-  replace_iris(iris_with_missing)
 
+iris_without_missing = map_dfr(iris_with_missing, replace_iris)
 ```
+
+
+##Problem 2
+
+start with a tibble, this tibble contains file and path
+##convert to vector = as.vector
+##str-c
+##create a lable by yourself
+##pivot longer the week
+##group cols
+##map read.csv
+
 
