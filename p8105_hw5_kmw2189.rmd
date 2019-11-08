@@ -28,7 +28,10 @@ theme_set(theme_minimal() + theme(legend.position = "bottom"))
 
 Uses the iris dataset from the tidyverse package and there are some missing values in each column. The purpose of this problem is to fill in those missing values.
 
-```{r}
+1) For numeric variables, you should fill in missing values with the mean of non-missing values
+2) For character variables, you should fill in missing values with "virginica"
+
+```{r loading problem 1 data}
 set.seed(10)
 
 iris_with_missing = iris %>% 
@@ -37,13 +40,7 @@ iris_with_missing = iris %>%
   janitor::clean_names()
 ```
 
-1) For numeric variables, you should fill in missing values with the mean of non-missing values
-2) For character variables, you should fill in missing values with "virginica"
-
-Instructions:
-and returns the resulting vector. 
-Apply this function to the columns of iris_with_missing using a map statement
-```{r}
+```{r problem 1 trial code, include = FALSE}
 ## code outside of the function that replaces numeric with mean of other values 
 iris_with_missing %>% 
   mutate(
@@ -54,7 +51,7 @@ iris_with_missing %>%
 
 ```
 
-```{r}
+```{r problem 1 function and map}
 ## write a function that takes a vector as an argument. 
 replace_iris = function(col_name){
   
@@ -76,9 +73,26 @@ iris_without_missing = map_dfr(iris_with_missing, replace_iris)
 ```
 
 
-##Problem 2
+## Problem 2
+Problem 2 contains data from a longitudinal study that included a control arm and an experimental arm. Data for each participant is included in a separate file, and file names include the subject ID and arm.
+
+Create a tidy dataframe containing data from all participants, including the subject ID, arm, and observations over time:
+
+```{r loading problem 2 data}
+##Start with a dataframe containing all file names; the list.files function will help
+files = list.files(path = "./data", pattern = "*.csv", full.names = TRUE) %>% 
+  set_names()
+
+```
+
+
+Iterate over file names and read in data for each subject using purrr::map and saving the result as a new variable in the dataframe
+Tidy the result; manipulate file names to include control arm and subject ID, make sure weekly observations are “tidy”, and do any other tidying that’s necessary
+Make a spaghetti plot showing observations on each subject over time, and comment on differences between groups.
+
 
 start with a tibble, this tibble contains file and path
+use mutate to pull data.
 ##convert to vector = as.vector
 ##str-c
 ##create a lable by yourself
