@@ -177,7 +177,7 @@ sim_results
 
 ```
 
-Make a plot showing the proportion of times the null was rejected (the power of the test) on the y axis and the true value of β2 on the x axis. 
+Make a plot showing the proportion of times the null was rejected (the power of the test) on the y axis and the true value of Beta 2 on the x axis. 
 ```{r}
 sim_results %>% 
   group_by(beta_1) %>% 
@@ -196,12 +196,12 @@ sim_results %>%
 
 ```
 
-**Describe the association between effect size and power.**
+**Describe the association between effect size and power:**
 
 As the effect size increases, power increases. 
 
 
-Make a plot showing the average estimate of β^1 on the y axis and the true value of β1 on the x axis. 
+Make a plot showing the average estimate of Beta 1 on the y axis and the true value of Beta 1 on the x axis. 
 ```{r}
 sim_results %>% 
   group_by(beta_1) %>% 
@@ -219,6 +219,7 @@ sim_results %>%
 ```
 
 Make a second plot (or overlay on the first) the average estimate of β^1 only in samples for which the null was rejected on the y axis and the true value of β1 on the x axis. 
+
 ```{r}
 sim_results %>% 
   filter(p_value < 0.05) %>% 
@@ -236,4 +237,5 @@ sim_results %>%
 ```
 
 **Is the sample average of Beta 1 across tests for which the null is rejected approximately equal to the true value of Beta 1? Why or why not?**
+
 The sample average when the null hypothesis was rejected was not approximately equal to the true value, the mean of all of the estimates was closer to the true value.  I believe this is due to the smaller sample size of estimates when the null was rejected. 
